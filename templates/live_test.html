@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Mask Detection | Live Camera Test</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="back-button">
+        <a href="{{ url_for('index') }}" class="back-btn">← Back to Home</a>
+    </div>
+
+    <div class="main-container">
+        <h1>Live Camera Detection</h1>
+        
+        <div class="live-detection-container">
+            <!-- <div class="camera-section"> -->
+                <div class="camera-container">
+                    <img id="videoFeed" class="camera-feed" style="display: none;" alt="Live camera feed">
+                    
+                    <div id="camera-placeholder" class="camera-feed" style="display: flex; align-items: center; justify-content: center; background: #f7fafc; color: #4a5568; font-size: 18px; border: 2px dashed #e2e8f0;">
+                        📷 Click "Start Camera" to begin live detection
+                    </div>
+                </div>
+
+                <div class="camera-controls">
+                    <button id="startBtn" class="control-btn start-btn">
+                        Start Camera
+                    </button>
+                    <button id="stopBtn" class="control-btn stop-btn" style="display: none;">
+                        Stop Camera
+                    </button>
+                </div>
+            </div>
+
+            <!-- <div class="detection-results">
+                <div class="result-title">Detection Results</div>
+                <div id="detection-status" class="detection-status-card">
+                    <div class="status-icon">📷</div>
+                    <div class="status-text">Camera not started</div>
+                    <div class="status-details">Start the camera to begin real-time detection</div>
+                </div>
+                
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <div class="stat-label">Faces Detected</div>
+                        <div id="face-count" class="stat-value">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Last Detection</div>
+                        <div id="last-detection" class="stat-value">N/A</div>
+                    </div>
+                </div>
+            </div> -->
+        <!-- </div> -->
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <script>
+        const videoFeed = document.getElementById('videoFeed');
+        const cameraPlaceholder = document.getElementById('camera-placeholder');
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const detectionStatus = document.getElementById('detection-status');
+        
+        let isStreaming = false;
+
+        // Toast notification function
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            
+            const container = document.getElementById('toast-container');
+            container.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 100);
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => container.removeChild(toast), 300);
+            }, 3000);
+        }
+
+        // Start camera stream
+        function startCamera() {
+            if (isStreaming) return;
+
+            showToast('Requesting camera access...', 'info');
+
+            // Start video feed from Flask immediately
+            videoFeed.src = '/video_feed?' + new Date().getTime(); // Add timestamp to prevent caching
+            videoFeed.style.display = 'block';
+            cameraPlaceholder.style.display = 'none';
+            
+            startBtn.style.display = 'none';
+            stopBtn.style.display = 'inline-block';
+            
+            isStreaming = true;
+            
+            detectionStatus.innerHTML = `
+                <div class="status-icon">🟢</div>
+                <div class="status-text">Live Detection Active</div>
+                <div class="status-details">Real-time face mask detection in progress</div>
+            `;
+            detectionStatus.className = 'detection-status-card active';
+            
+            showToast('Camera started successfully', 'success');
+        }
+
+        // Stop camera stream
+        function stopCamera() {
+            if (!isStreaming) return;
+
+            videoFeed.style.display = 'none';
+            cameraPlaceholder.style.display = 'flex';
+            cameraPlaceholder.textContent = '📷 Camera stopped. Click "Start Camera" to resume.';
+            
+            startBtn.style.display = 'inline-block';
+            stopBtn.style.display = 'none';
+            
+            isStreaming = false;
+            
+            detectionStatus.innerHTML = `
+                <div class="status-icon">📷</div>
+                <div class="status-text">Camera stopped</div>
+                <div class="status-details">Click "Start Camera" to begin detection</div>
+            `;
+            detectionStatus.className = 'detection-status-card';
+            
+            // Stop the camera stream on server side
+            fetch('/stop_camera')
+                .then(response => response.json())
+                .then(data => {
+                    showToast('Camera stopped successfully', 'info');
+                })
+                .catch(error => {
+                    console.error('Error stopping camera:', error);
+                });
+        }
+
+        // Event listeners
+        startBtn.addEventListener('click', startCamera);
+        stopBtn.addEventListener('click', stopCamera);
+
+        // Handle video feed errors
+        videoFeed.addEventListener('error', function() {
+            showToast('Video feed error. Please try restarting the camera.', 'error');
+            stopCamera();
+        });
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', function() {
+            if (isStreaming) {
+                fetch('/stop_camera');
+            }
+        });
+
+        // Show welcome message
+        window.addEventListener('load', () => {
+            showToast('Grant camera permission to start live detection', 'info');
+        });
+    </script>
+
+    <footer style="margin-top: 4rem; text-align: center; padding: 2rem; background: rgba(255, 255, 255, 0.1); border-radius: 12px; backdrop-filter: blur(10px);">
+        <p style="color: #718096; margin-bottom: 0.5rem; font-size: 0.9rem;">
+            Face Mask Detection System
+        </p>
+        <p style="color: #4a5568; font-weight: 500; font-size: 0.95rem;">
+            Designed & Developed with ❤️ by <a href="github.com/SaiDhinakar" style="color: #4a5568; font-weight: 500; font-size: 0.95rem;">Sai Dhinakar</a>
+        </p>
+    </footer>
+</body>
+</html>

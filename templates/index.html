@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Mask Detection System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <h1>Face Mask Detection System</h1>
+    <p class="subtitle">AI-powered face mask detection using computer vision and deep learning</p>
+    
+    <div class="container">
+        <a href="{{ url_for('upload') }}" class="btn upload-btn">
+            📸 Upload Image
+        </a>
+        <a href="{{ url_for('live_test') }}" class="btn live-btn">
+            📹 Live Camera Test
+        </a>
+        <a href="{{ url_for('about') }}" class="btn about-btn">
+            ℹ️ About
+        </a>
+    </div>
+
+    <div class="features">
+        <div class="feature-card">
+            <div class="feature-icon">🖼️</div>
+            <div class="feature-title">Image Upload</div>
+            <div class="feature-description">Upload any image and get instant mask detection results with confidence scores</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📷</div>
+            <div class="feature-title">Live Detection</div>
+            <div class="feature-description">Real-time face mask detection using your camera with live video feed</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🧠</div>
+            <div class="feature-title">AI Powered</div>
+            <div class="feature-description">Uses deep learning models for accurate and reliable detection</div>
+        </div>
+    </div>
+
+    <footer style="margin-top: 4rem; text-align: center; padding: 2rem; background: rgba(255, 255, 255, 0.1); border-radius: 12px; backdrop-filter: blur(10px);">
+        <p style="color: #718096; margin-bottom: 0.5rem;">
+            Face Mask Detection System
+        </p>
+        <p style="color: #4a5568; font-weight: 500;">
+            Designed & Developed with ❤️ by <a href="github.com/SaiDhinakar" style="color: #4a5568; font-weight: 500;">Sai Dhinakar</a>
+        </p>
+    </footer>
+
+    <script>
+        function showToast(message, type) {
+            const container = document.createElement('div');
+            container.className = 'toast-container';
+            document.body.appendChild(container);
+            
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            
+            container.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 100);
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => container.removeChild(toast), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

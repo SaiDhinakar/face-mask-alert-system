@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Face Mask Detection System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .hero-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #718096;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .tech-badge {
+            background: #3182ce;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+        
+        .feature-desc {
+            color: #718096;
+            line-height: 1.6;
+        }
+        
+        .developer-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .dev-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3182ce, #38a169);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+        }
+        
+        .dev-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+        
+        .dev-title {
+            color: #3182ce;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .dev-description {
+            color: #718096;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .contact-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+        
+        .contact-link {
+            padding: 10px 20px;
+            background: #f7fafc;
+            color: #2d3748;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+        }
+        
+        .contact-link:hover {
+            background: #3182ce;
+            color: white;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="back-button">
+        <a href="{{ url_for('index') }}" class="back-btn">← Back to Home</a>
+    </div>
+
+    <div class="about-container">
+        <div class="hero-section">
+            <h1 class="hero-title">About Face Mask Detection System</h1>
+            <p class="hero-subtitle">
+                A cutting-edge AI-powered application that uses computer vision and deep learning 
+                to detect whether a person is wearing a face mask or not. Built with modern 
+                technologies to provide accurate and real-time detection capabilities.
+            </p>
+            
+            <div class="tech-stack">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">TensorFlow</span>
+                <span class="tech-badge">OpenCV</span>
+                <span class="tech-badge">Flask</span>
+                <span class="tech-badge">HTML5</span>
+                <span class="tech-badge">CSS3</span>
+                <span class="tech-badge">JavaScript</span>
+            </div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">🧠</div>
+                <h3 class="feature-title">Deep Learning Model</h3>
+                <p class="feature-desc">
+                    Trained on thousands of images using TensorFlow.
+                </p>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">📷</div>
+                <h3 class="feature-title">Real-time Processing</h3>
+                <p class="feature-desc">
+                    Live camera feed processing with instant detection results.
+                </p>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">🖼️</div>
+                <h3 class="feature-title">Image Upload</h3>
+                <p class="feature-desc">
+                    Upload any image and analysis with 
+                    detailed results and visual feedback on detection areas.
+                </p>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">Fast & Efficient</h3>
+                <p class="feature-desc">
+                    Optimized algorithms ensure quick processing times while 
+                    maintaining high accuracy and minimal resource usage.
+                </p>
+            </div>
+        </div>
+
+        <div class="developer-section">
+            <div class="dev-avatar">👨‍💻</div>
+            <h2 class="dev-name">Sai Dhinakar</h2>
+            <p class="dev-title">AI & Machine Learning Engineer</p>
+            <p class="dev-description">
+                This Face Mask Detection System was designed and developed using modern web technologies 
+                and machine learning frameworks. The project showcases the practical application of 
+                computer vision in real-world scenarios, combining deep learning models with intuitive 
+                web interfaces for seamless user experience.
+            </p>
+            
+            <div class="contact-links">
+                <a href="github.com/SaiDhinakar" class="contact-link">📱 GitHub</a>
+            </div>
+        </div>
+
+        <div class="hero-section">
+            <h3 style="margin-bottom: 1rem; color: #2d3748;">How It Works</h3>
+            <div style="text-align: left; max-width: 600px; margin: 0 auto;">
+                <ol style="color: #718096; line-height: 2;">
+                    <li><strong>Face Detection:</strong> Uses Haar Cascade classifiers to detect faces in images or video frames</li>
+                    <li><strong>Image Preprocessing:</strong> Resizes and normalizes detected face regions for model input</li>
+                    <li><strong>Classification:</strong> Deep learning model analyzes the face region to determine mask presence</li>
+                    <li><strong>Results Display:</strong> Shows prediction with confidence score and visual indicators</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <script>
+        // Toast notification function
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            
+            const container = document.getElementById('toast-container');
+            container.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 100);
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => container.removeChild(toast), 300);
+            }, 3000);
+        }
+
+        // Show welcome message
+        window.addEventListener('load', () => {
+            showToast('Learn more about our AI-powered detection system', 'info');
+        });
+    </script>
+</body>
+</html>

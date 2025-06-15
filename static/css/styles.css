@@ -1,0 +1,443 @@
+/* Professional Theme for Face Mask Detection App */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    color: #2c3e50;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: #ffffff;
+    color: #2c3e50;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e1e8ed;
+}
+
+.back-btn:hover {
+    background: #f8fafc;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin: 60px 0 40px 0;
+    color: #2c3e50;
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Upload Section */
+.upload-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.file-upload-container {
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
+.file-upload-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.file-upload-wrapper input[type="file"] {
+    position: absolute;
+    left: -9999px;
+}
+
+.file-upload-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 32px;
+    background: #ffffff;
+    border: 2px dashed #cbd5e0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    color: #4a5568;
+    min-width: 250px;
+}
+
+.file-upload-label:hover {
+    border-color: #3182ce;
+    background: #ebf8ff;
+    color: #3182ce;
+}
+
+.file-upload-label.active {
+    border-color: #38a169;
+    background: #f0fff4;
+    color: #38a169;
+}
+
+/* Result Container */
+.result-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.image-preview-container,
+.result-panel {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+}
+
+.image-preview {
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #e2e8f0;
+    border-radius: 8px;
+    background: #f7fafc;
+    overflow: hidden;
+}
+
+.image-preview.has-image {
+    border: none;
+    background: transparent;
+}
+
+.image-preview img {
+    max-width: 100%;
+    max-height: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.preview-placeholder {
+    text-align: center;
+    color: #a0aec0;
+    font-size: 16px;
+}
+
+.result-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #2d3748;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 10px;
+}
+
+.prediction-result {
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.prediction-text {
+    font-size: 18px;
+    color: #4a5568;
+    margin-bottom: 10px;
+}
+
+.prediction-label {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 15px 0;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.prediction-label.with-mask {
+    background: #c6f6d5;
+    color: #22543d;
+    border: 2px solid #38a169;
+}
+
+.prediction-label.without-mask {
+    background: #fed7d7;
+    color: #742a2a;
+    border: 2px solid #e53e3e;
+}
+
+.confidence-score {
+    font-size: 16px;
+    color: #718096;
+    margin-top: 10px;
+}
+
+/* Live Test Specific Styles */
+.camera-container {
+    text-align: center;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+}
+
+.camera-feed {
+    width: 100%;
+    max-width: 640px;
+    height: 480px;
+    border-radius: 8px;
+    background: #000;
+    margin: 20px auto;
+    display: block;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.camera-controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.control-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.start-btn {
+    background: #38a169;
+    color: white;
+}
+
+.start-btn:hover {
+    background: #2f855a;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.stop-btn {
+    background: #e53e3e;
+    color: white;
+}
+
+.stop-btn:hover {
+    background: #c53030;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Live Detection Layout */
+.live-detection-container {
+    display: grid;
+    /* grid-template-columns: 2fr 1fr; */
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.camera-section {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+}
+
+.detection-results {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+    height: fit-content;
+}
+
+.detection-status-card {
+    background: #f7fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    transition: all 0.2s ease;
+}
+
+.detection-status-card.active {
+    background: #f0fff4;
+    border-color: #38a169;
+}
+
+.status-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.status-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 5px;
+}
+
+.status-details {
+    font-size: 14px;
+    color: #718096;
+}
+
+.stats-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.stat-item {
+    background: #f7fafc;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #718096;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2d3748;
+}
+
+/* Loading Animation */
+.loading {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #3182ce;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e2e8f0;
+    border-top: 2px solid #3182ce;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Toast Notifications */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.toast {
+    padding: 12px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 500;
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 250px;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.toast.success {
+    background: #38a169;
+}
+
+.toast.error {
+    background: #e53e3e;
+}
+
+.toast.info {
+    background: #3182ce;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .result-container,
+    .live-detection-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        margin: 40px 0 30px 0;
+    }
+
+    .file-upload-label {
+        padding: 12px 24px;
+        min-width: 200px;
+    }
+
+    .camera-feed {
+        height: 300px;
+    }
+
+    .camera-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .control-btn {
+        width: 200px;
+    }
+
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+}
