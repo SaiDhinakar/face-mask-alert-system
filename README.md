@@ -274,4 +274,4 @@ python src/train.py
 
 ⭐ **Star this repository if you found it helpful!**
 
-Made with ❤️ by [Sai Dhinakar](github.com/SaiDhinakar)
+Made with ❤️ by [Sai Dhinakar](https://github.com/SaiDhinakar)
